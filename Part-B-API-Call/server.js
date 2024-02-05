@@ -1,3 +1,10 @@
+// DISCLOSURE: I've used ChatGPT to code this lab.
+// I've also tried my best to use OOP alongside the nodejs and server hosting.
+
+// HOSTED URL: https://comp4537-lab3-gathrean.vercel.app
+// NOTE: When name is not specified, the message will say Guest.
+// - To specify name, add ?name=yourName to the end of the URL.
+
 const http = require('http');
 const url = require('url');
 const Utils = require('./modules/utils');
