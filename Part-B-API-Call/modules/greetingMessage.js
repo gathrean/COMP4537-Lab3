@@ -1,6 +1,6 @@
 class GreetingMessage {
     constructor(name) {
-        this.messageTemplate = require('../lang/en/en'); // Adjust the path based on your project structure
+        this.messageTemplate = require('../lang/en/en');
         this.name = name || 'Guest';
     }
 
