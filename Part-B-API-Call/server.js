@@ -1,7 +1,7 @@
 const http = require('http');
 const url = require('url');
 const GreetingMessage = require('./modules/greetingMessage');
-const Utils = require('./modules/utils');
+const { getDate } = require('./modules/utils'); // Destructure getDate from utils
 
 class Server {
     constructor() {
@@ -18,7 +18,7 @@ class Server {
     handleRequest(req, res) {
         const parsedUrl = url.parse(req.url, true);
         const name = parsedUrl.query.name;
-        const currentTime = Utils.getDate();
+        const currentTime = getDate(); // Use getDate directly
 
         // Get greeting from greetingMessage module
         const greeting = new GreetingMessage(name);
