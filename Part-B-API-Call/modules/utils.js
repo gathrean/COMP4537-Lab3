@@ -1,7 +1,7 @@
-function getCurrentTime() {
-    return new Date().toLocaleTimeString();
+class Utils {
+    static getCurrentTime() {
+        return new Date().toLocaleTimeString();
+    }
 }
 
-module.exports = {
-    getCurrentTime
-};
+module.exports = Utils;
