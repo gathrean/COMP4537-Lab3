@@ -1,0 +1,1 @@
+module.exports = 'Hello, %1! The server time is %2.';
