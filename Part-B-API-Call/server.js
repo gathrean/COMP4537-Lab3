@@ -1,7 +1,7 @@
 const http = require('http');
 const url = require('url');
-const GreetingMessage = require('./modules/greetingMessage');
-const Utils = require('./modules/utils');
+const GreetingMessage = require('./modules/greetingMessage.js');
+const Utils = require('./modules/utils.js');
 
 class Server {
     constructor() {
