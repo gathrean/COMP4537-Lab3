@@ -1,6 +1,7 @@
 const http = require('http');
 const url = require('url');
 const Utils = require('./modules/utils');
+const en = require('./lang/en/en');
 
 class MyServer {
     constructor() {
@@ -12,7 +13,7 @@ class MyServer {
         const name = parsedUrl.query.name;
         const currentTime = Utils.getCurrentTime();
 
-        const message = `<p style="color: blue;">Hello, ${name}! The server time is ${currentTime}.</p>`;
+        const message = `${en.greeting(name)} ${en.serverTime(currentTime)}`;
 
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(message);

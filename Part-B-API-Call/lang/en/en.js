@@ -1,1 +1,4 @@
-module.exports = 'Hello, %1! The server time is %2.';
+module.exports = {
+    greeting: name => `<p style="color: blue;">Hello, ${name}!`,
+    serverTime: time => `The server time is ${time}.</p>`
+};
