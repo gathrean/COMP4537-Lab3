@@ -1,15 +1,28 @@
 const http = require('http');
 const url = require('url');
 
-http.createServer(function (req, res) {
-  const parsedUrl = url.parse(req.url, true);
-  const name = parsedUrl.query.name;
-  const currentTime = new Date().toLocaleTimeString();
+class MyServer {
+    constructor() {
+        this.server = http.createServer(this.handleRequest.bind(this));
+    }
 
-  const message = `<p style="color: blue;">Hello, ${name}! The server time is ${currentTime}.</p>`;
+    handleRequest(req, res) {
+        const parsedUrl = url.parse(req.url, true);
+        const name = parsedUrl.query.name;
+        const currentTime = new Date().toLocaleTimeString();
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(message);
-}).listen(8089);
+        const message = `<p style="color: blue;">Hello, ${name}! The server time is ${currentTime}.</p>`;
 
-console.log('Server running on port 8089.');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(message);
+    }
+
+    start(port) {
+        this.server.listen(port, () => {
+            console.log(`Server running on port ${port}.`);
+        });
+    }
+}
+
+const myServer = new MyServer();
+myServer.start(8089);
