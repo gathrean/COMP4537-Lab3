@@ -20,24 +20,13 @@ class Server {
         const name = parsedUrl.query.name;
         const currentTime = Utils.getDate();
 
+        // Get greeting from greetingMessage module
         const greeting = new GreetingMessage(name);
         const formattedMessage = greeting.getFormattedMessage(currentTime);
-
         const message = `<p style="color: blue;">${formattedMessage}</p>`;
 
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(message);
-    }
-}
-
-class GreetingMessage {
-    constructor(name) {
-        this.messageTemplate = require('./lang/en/en');
-        this.name = name || 'Guest';
-    }
-
-    getFormattedMessage(currentTime) {
-        return this.messageTemplate.replace('%1', this.name).replace('%2', currentTime);
     }
 }
 
