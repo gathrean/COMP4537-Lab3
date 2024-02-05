@@ -1,19 +1,45 @@
 const http = require('http');
 const url = require('url');
-const utils = require('./modules/utils');
-const greetingMessage = require('./lang/en/en');
+const GreetingMessage = require('./modules/greetingMessage');
+const Utils = require('./modules/utils');
 
-http.createServer(function (req, res) {
-  const parsedUrl = url.parse(req.url, true);
-  const name = parsedUrl.query.name;
-  const currentTime = utils.getDate();
+class Server {
+    constructor() {
+        this.server = http.createServer(this.handleRequest.bind(this));
+        this.port = 8089;
+    }
 
-  const formattedMessage = greetingMessage.replace('%1', name || 'Guest').replace('%2', currentTime);
+    start() {
+        this.server.listen(this.port, () => {
+            console.log(`Server running on port ${this.port}.`);
+        });
+    }
 
-  const message = `<p style="color: blue;">${formattedMessage}</p>`;
+    handleRequest(req, res) {
+        const parsedUrl = url.parse(req.url, true);
+        const name = parsedUrl.query.name;
+        const currentTime = Utils.getDate();
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(message);
-}).listen(8089);
+        const greeting = new GreetingMessage(name);
+        const formattedMessage = greeting.getFormattedMessage(currentTime);
 
-console.log('Server running on port 8089.');
+        const message = `<p style="color: blue;">${formattedMessage}</p>`;
+
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(message);
+    }
+}
+
+class GreetingMessage {
+    constructor(name) {
+        this.messageTemplate = require('./lang/en/en');
+        this.name = name || 'Guest';
+    }
+
+    getFormattedMessage(currentTime) {
+        return this.messageTemplate.replace('%1', this.name).replace('%2', currentTime);
+    }
+}
+
+const server = new Server();
+server.start();
