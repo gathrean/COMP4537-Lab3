@@ -1,5 +1,5 @@
 class Utils {
-    static getCurrentTime() {
+    static getDate() {
         const options = {
             timeZone: 'America/Los_Angeles',
             hour12: true,

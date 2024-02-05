@@ -18,7 +18,7 @@ class MyServer {
     handleRequest(req, res) {
         const parsedUrl = url.parse(req.url, true);
         const name = parsedUrl.query.name;
-        const currentTime = Utils.getCurrentTime();
+        const currentTime = Utils.getDate();
 
         const message = `${en.greeting(name)} ${en.serverTime(currentTime)}`;
 
