@@ -1,0 +1,14 @@
+{
+    "name": "COMP4537-Lab3",
+    "version": "1.0.0",
+    "description": "Lab 3 for COMP 4537",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "Gathrean Dela Cruz",
+    "license": "BCIT",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
